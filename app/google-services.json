@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "318866724045",
+    "project_id": "wheretogo-afeee",
+    "storage_bucket": "wheretogo-afeee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318866724045:android:9d9a75a58ab919f1b34584",
+        "android_client_info": {
+          "package_name": "com.example.wheretogo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDPCzPj8hmt9ql7-QYV8mKi2wEJeZvCoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
