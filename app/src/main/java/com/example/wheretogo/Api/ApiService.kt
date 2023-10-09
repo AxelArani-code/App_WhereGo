@@ -1,7 +1,8 @@
 package com.example.wheretogo.Api
 
 
-import com.example.wheretogo.Model.Locales
+
+import com.example.wheretogo.Model.Localess
 import com.example.wheretogo.Model.Productos
 import com.example.wheretogo.Model.Provedo
 
@@ -15,14 +16,16 @@ interface ApiService {
 
 
     @GET("mode.php")
-    fun obtenerDatosLocalesFisicos(): Call<MutableList<Locales>>
+    fun obtenerDatosLocalesFisicos(): Call<MutableList<Localess>>
 
     @GET("mode.php")
     fun obtenerDatosProvedores(): Call<Provedo>
+
+
     @GET("mode.php")
-    fun obtenerDatosProductos(): Call<List<Productos>>
+    fun obtenerDatosProductos(): Call<Productos>
 
 
     @GET("local-beta.php")
-    fun obtenerDatosPoductos(): Call<MutableList<Locales>>
+    fun obtenerDatosPoductos(): Call<MutableList<Localess>>
 }

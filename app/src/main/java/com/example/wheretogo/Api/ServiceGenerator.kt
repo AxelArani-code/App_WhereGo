@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceGenerator {
     private val url = "http://192.168.1.7/api_go/"
+    //https://progresfilms.000webhostapp.com/WhereGoApp/
     public val imageUrl ="http://192.168.1.4/bm/Page/img/"
     private val  client  = OkHttpClient.Builder().build()
 

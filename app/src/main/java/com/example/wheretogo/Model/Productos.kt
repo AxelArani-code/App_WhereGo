@@ -1,12 +1,15 @@
 package com.example.wheretogo.Model
 
 
-import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-
+import androidx.annotation.Keep
 
 @Keep
 data class Productos(
     @SerializedName("cafeteria")
-    val cafeteria: Cafeteria
+    val cafeteria: Cafeteria,
+    @SerializedName("Todo El Dia")
+    val todoElDia: TodoElDia?,
+    @SerializedName("Todo Platos")
+    val todoPlatos: TodoPlatos?
 )

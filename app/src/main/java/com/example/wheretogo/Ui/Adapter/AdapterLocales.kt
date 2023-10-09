@@ -1,5 +1,7 @@
 package com.example.wheretogo.Ui.Adapter
 
+
+
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.wheretogo.Model.Locales
-
+import com.example.wheretogo.Model.Localess
 
 import com.example.wheretogo.R
 
-class AdapterLocales(private val localesList: List<Locales>, private val onItemClick: (Locales)->Unit) :
+class AdapterLocales(private val localesList: List<Localess>, private val onItemClick: (Localess)->Unit) :
     RecyclerView.Adapter<AdapterLocales.LocalViewHolder>() {
 
     class LocalViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -22,7 +23,7 @@ class AdapterLocales(private val localesList: List<Locales>, private val onItemC
         private val imagenPortada: ImageView = itemView.findViewById(R.id.img_portada_1)
         private val imagenLogo: ImageView = itemView.findViewById(R.id.img_logo)
 
-        fun bind(locales: Locales, onItemClick: (Locales)->Unit ){
+        fun bind(locales: Localess, onItemClick: (Localess)->Unit ){
             tiempoTextView.text = locales.horario
             direccionTextView.text = locales.direccion
             Glide.with(imagenPortada.context).load(locales.portada).into(imagenPortada)

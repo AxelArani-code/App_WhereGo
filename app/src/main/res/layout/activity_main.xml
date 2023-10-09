@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chip" />
+        app:layout_constraintTop_toBottomOf="@+id/chip_Location" />
 
     <TextView
         android:id="@+id/textView9"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip"
+        android:id="@+id/chip_Location"
         android:layout_width="146dp"
         android:layout_height="39dp"
         android:layout_marginStart="10dp"

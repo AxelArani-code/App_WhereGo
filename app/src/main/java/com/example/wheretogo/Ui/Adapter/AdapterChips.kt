@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wheretogo.Model.Locales
+import com.example.wheretogo.Model.Localess
 import com.example.wheretogo.R
 
-class AdapterChips (private val itmes: List<Locales>, private val onItemClick: (Locales)->Unit):
+class AdapterChips (private val itmes: List<Localess>, private val onItemClick: (Localess)->Unit):
     RecyclerView.Adapter<AdapterChips.ChipViewHolder>() {
 
     class ChipViewHolder (itemView:View): RecyclerView.ViewHolder(itemView){
          val textName :TextView = itemView.findViewById(R.id.text_Name_Chaip)
-        fun bind (locales: Locales, onItemClick: (Locales) -> Unit){
+        fun bind (locales: Localess, onItemClick: (Localess) -> Unit){
 
         }
     }

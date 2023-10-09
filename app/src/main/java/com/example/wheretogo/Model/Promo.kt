@@ -2,7 +2,6 @@ package com.example.wheretogo.Model
 
 
 import com.google.gson.annotations.SerializedName
-
 import androidx.annotation.Keep
 
 @Keep

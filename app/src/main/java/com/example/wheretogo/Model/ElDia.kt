@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 
 @Keep
-data class TéEnHebra(
+data class ElDia(
     @SerializedName("nombre")
-    val nombre: String, // Ixtén
+    val nombre: String, // Medialuna
     @SerializedName("precio")
-    val precio: Double // 600.00
+    val precio: String // $330.00
 )

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.wheretogo.Api.ApiService
 import com.example.wheretogo.Api.ServiceGenerator
-import com.example.wheretogo.Model.Locales
+
 import com.example.wheretogo.Model.Provedo
 
 
@@ -54,6 +54,9 @@ class MainActivity : AppCompatActivity() {
         val user:FirebaseUser? = auth.currentUser
 
 
+        binding.chipLocation.setOnClickListener {
+            popupLocation()
+        }
 
         viewLoading()
         getFunDataPerson(name,photoUrl,email,user)
@@ -62,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
     private fun viewLoading() {
         Handler(Looper.getMainLooper()).postDelayed({
@@ -81,23 +85,25 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val localesResponse = response.body()
                     localesResponse?.let { response ->
-                        val locales = response.localess
-
+                        val localesResponse = response.localesses
+                        Log.v("Json",   "JsonLocaless=" + localesResponse)
                         val layouManager = LinearLayoutManager(this@MainActivity)
                         binding.recyclerViewLocales.layoutManager = layouManager
-                        val adapter = AdapterLocales(locales) { locales ->
+                        val adapter = AdapterLocales(localesResponse) { localess ->
                             // Tu código para manejar los locales aquí
-                            val productos= locales.productos
-                            val cafe = productos.toString()
-                            Log.v("Json",   "Json=" + cafe)
+                            val productos= localess.productos
+                            // val cafe = productos.toString()
+                            //   Log.v("Json",   "Json=" + cafe)
 
                             val intent = Intent(this@MainActivity, ViewLocalesActivity::class.java)
-                            intent.putExtra("localNombre",locales.nombre)
-                            intent.putExtra("ubicacion",locales.direccion)
-                            intent.putExtra("portada",locales.portada)
-                            intent.putExtra("logo",locales.logo)
-                            intent.putExtra("telefono",locales.telefono)
-                            intent.putExtra("time", locales.horario)
+                            intent.putExtra("id",localess.id)
+                            intent.putExtra("localNombre",localess.nombre)
+                            intent.putExtra("ubicacion",localess.direccion)
+                            intent.putExtra("portada",localess.portada)
+                            intent.putExtra("logo",localess.logo)
+                            intent.putExtra("telefono",localess.telefono)
+                            intent.putExtra("time", localess.horario)
+                            intent.putExtra("GPS",localess.gps)
 
                             //intent.putExtra("locales", local.size)
                             startActivity(intent)
@@ -120,7 +126,6 @@ class MainActivity : AppCompatActivity() {
                 binding.textErrorInfo.setText("Error, ${t.message}")
                 Log.v("Json", "error=" + t.message)
             }
-
         })
     }
 
@@ -141,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             mostrarDialogoEmergente(name,photoUrl,email)
         }
     }
-
+/*
     private fun adapterLocalesFisicos() {
 
         val serviceGenerator  = ServiceGenerator.buildService(ApiService::class.java)
@@ -152,10 +157,10 @@ class MainActivity : AppCompatActivity() {
        // val call : Call<MutableList<Localess>> = apiService.obtenerDatosLocalesFisicos()
         val call = serviceGenerator.obtenerDatosLocalesFisicos()
         Log.v("Json", "errorEs=" + call)
-      call.enqueue(object :Callback<MutableList<Locales>>{
+      call.enqueue(object :Callback<MutableList<Localess>>{
           override fun onResponse(
-              call: Call<MutableList<Locales>>,
-              response: Response<MutableList<Locales>>
+              call: Call<MutableList<Localess>>,
+              response: Response<MutableList<Localess>>
           ) {
               if (response.isSuccessful){
                   val local = response.body()
@@ -165,8 +170,8 @@ class MainActivity : AppCompatActivity() {
                       binding.recyclerViewLocales.layoutManager = layouManager
                       val adapter = AdapterLocales(local){locales ->
                           val productos= locales.productos
-                          val cafe = productos?.cafeteria?.café
-                          Toast.makeText(applicationContext, "Josn.."+cafe, Toast.LENGTH_LONG).show()
+                          //val cafe = productos?.cafeteria?.café
+                         // Toast.makeText(applicationContext, "Josn.."+cafe, Toast.LENGTH_LONG).show()
                           val intent = Intent(this@MainActivity, ViewLocalesActivity::class.java)
                           intent.putExtra("localNombre",locales.nombre)
                           intent.putExtra("ubicacion",locales.direccion)
@@ -174,6 +179,7 @@ class MainActivity : AppCompatActivity() {
                           intent.putExtra("logo",locales.logo)
                           intent.putExtra("telefono",locales.telefono)
                           intent.putExtra("time", locales.horario)
+                          intent.putExtra("instagram",locales.instagram)
                           //intent.putExtra("locales", local.size)
                           startActivity(intent)
                       }
@@ -184,13 +190,13 @@ class MainActivity : AppCompatActivity() {
               }
           }
 
-          override fun onFailure(call: Call<MutableList<Locales>>, t: Throwable) {
+          override fun onFailure(call: Call<MutableList<Localess>>, t: Throwable) {
               Toast.makeText(applicationContext, "Error en la solicitud: ${t.message}", Toast.LENGTH_LONG).show()
               Log.v("Json", "error=" + t.message);
           }
 
       })
-    }
+    }*/
 /*
     private fun adapterLocales() {
 
@@ -228,6 +234,23 @@ class MainActivity : AppCompatActivity() {
 
         })
     }*/
+
+
+
+    private fun popupLocation() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.popup_location)
+        val textLocation = dialog.findViewById<TextView>(R.id.textViewLocation)
+        val textInfo = dialog.findViewById<TextView>(R.id.textViewLocationInfo)
+
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+        // Cierra el diálogo cuando se toca en cualquier parte fuera de él
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(true)
+
+        // Muestra el diálogo
+        dialog.show()
+    }
 
     private fun mostrarDialogoEmergente(name: String?, photoUrl: String?, email: String?) {
         val dialog = Dialog(this)
